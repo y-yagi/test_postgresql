@@ -1,0 +1,7 @@
+    source 'https://rubygems.org'
+    gem 'rails', path: '/home/yaginuma/program/rails/master_y_yagi/rails'
+    gem 'arel', github: 'rails/arel'
+    gem 'pg'
+    gem 'benchmark-ips'
+    gem 'ruby-prof'
+    gem 'pg_array_parser'

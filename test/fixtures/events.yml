@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payload: { kind: "user_renamed", change: ["jack", "john"]}
+  detail: { kind: "user_renamed", change: ["jack", "john"]}
+
+two:
+  payload:
