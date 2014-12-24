@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20141213235346) do
   enable_extension "plpgsql"
   enable_extension "hstore"
 
-  create_table "array_tests", force: true do |t|
+  create_table "array_tests", force: :cascade do |t|
     t.string   "string_array",                         array: true
     t.string   "string_array_with_index",              array: true
     t.integer  "integer_array",                        array: true
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20141213235346) do
 # Could not dump table "articles" because of following StandardError
 #   Unknown type 'article_status' for column 'status'
 
-  create_table "books", force: true do |t|
+  create_table "books", force: :cascade do |t|
     t.string   "title"
     t.string   "tags",                    array: true
     t.integer  "ratings",                 array: true
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20141213235346) do
 # Could not dump table "contacts" because of following StandardError
 #   Unknown type 'full_address' for column 'address'
 
-  create_table "devices", force: true do |t|
+  create_table "devices", force: :cascade do |t|
     t.inet     "ip"
     t.cidr     "network"
     t.macaddr  "address"
@@ -55,32 +55,35 @@ ActiveRecord::Schema.define(version: 20141213235346) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "documents", force: true do |t|
+  create_table "documents", force: :cascade do |t|
     t.binary   "payload"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.json      "payload"
+    t.jsonb     "payloadb"
     t.daterange "duration"
     t.datetime  "created_at", null: false
     t.datetime  "updated_at", null: false
   end
 
-  create_table "profiles", force: true do |t|
+  add_index "events", ["payloadb"], name: "index_events_on_payloadb", using: :gin
+
+  create_table "profiles", force: :cascade do |t|
     t.hstore   "settings"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "revisions", force: true do |t|
+  create_table "revisions", force: :cascade do |t|
     t.uuid     "identifier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.bit      "settings",   limit: 8
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false

@@ -22,7 +22,7 @@ def create_big_data
 end
 
 def create_many_data
-  100000.times do |i|
+  100.times do |i|
     random_array =  ["abc", "test#{i}", "def"]
     ArrayTest.create!(
       string_array: random_array,
